@@ -1,13 +1,16 @@
 import { arabicForms } from "./presentation-forms";
 
-export default function harf(str: string): HTMLElement[] {
+export default function harf(str: string): string {
   const letters = str.split("")
-  //If it's a space don't pass it
-  return []
+  let finalString = ""
+  for (let i = 0; i < letters.length; i++) {
+    finalString += convertToForm(letters, i)
+  }
+  return finalString
 }
 
-function match(array: string[], index: number): string {
-  const letter = array[index]
+function convertToForm(letters: string[], index: number): string {
+  const letter = letters[index]
 
 
   let form = ""
@@ -24,7 +27,7 @@ function match(array: string[], index: number): string {
     case "ز":
     case "و":
     case "ى":
-      if (isCharAttachable(array[index - 1])) {
+      if (isCharAttachable(letters[index - 1])) {
         form = unicodeToChar(arabicForms[letter].final)
       }
       form = letter;
@@ -34,13 +37,13 @@ function match(array: string[], index: number): string {
 
       //if letter after ل is أ,آ,إ,ا Then use لا form considering the previous letter, otherwise no need.
       //لا forms: isolated form = final form - 1
-      switch (array[index + 1]) {
+      switch (letters[index + 1]) {
         case "ا":
         case "أ":
         case "إ":
         case "آ":
-          const lamAlef = letter.concat(array[index + 1])
-          if (isCharAttachable(array[index - 1])) {
+          const lamAlef = letter.concat(letters[index + 1])
+          if (isCharAttachable(letters[index - 1])) {
             form = unicodeToChar(arabicForms[lamAlef].final)
             break;
           }
@@ -48,7 +51,7 @@ function match(array: string[], index: number): string {
           break;
       }
 
-      form = anAttachableLetterForm(array, index)
+      form = anAttachableLetterForm(letters, index)
       break;
 
     case "ب":
@@ -74,7 +77,7 @@ function match(array: string[], index: number): string {
     case "ي":
       //Initial form = final from + 1
       //Medial form = final form + 2
-      form = anAttachableLetterForm(array, index)
+      form = anAttachableLetterForm(letters, index)
       break;
     default:
       form = letter
@@ -89,8 +92,8 @@ function unicodeToChar(u: string, mod: number = 0): string {
   )
 }
 
-function isCharAttachable(str: string): boolean {
-  if (str === " ")
+function isCharAttachable(char: string): boolean {
+  if (char === " ")
     return false
 
 
@@ -98,7 +101,7 @@ function isCharAttachable(str: string): boolean {
     "ة", "د", "ذ", "ر", "ز", "و", "ى", "ء"]
 
   for (const letter of nonAttachableLetters) {
-    if (str === letter) {
+    if (char === letter) {
       return false
     }
   }
@@ -106,19 +109,19 @@ function isCharAttachable(str: string): boolean {
   return true
 }
 
-function anAttachableLetterForm(array: string[], index: number): string {
-  const letter = array[index]
+function anAttachableLetterForm(letters: string[], index: number): string {
+  const letter = letters[index]
 
   //Initial form = final from + 1
   //Medial form = final form + 2
   //Refrence: https://unicode.org/charts/nameslist/c_FE70.html
 
-  if (isCharAttachable(array[index - 1])) {
-    if (array[index + 1] === " ") {
+  if (isCharAttachable(letters[index - 1])) {
+    if (letters[index + 1] === " ") {
       return unicodeToChar(arabicForms[letter].final)
     }
     return unicodeToChar(arabicForms[letter].final, 2)
-  } else if (array[index + 1] !== " ") {
+  } else if (letters[index + 1] !== " ") {
     return unicodeToChar(arabicForms[letter].final, 1)
   }
   return letter
