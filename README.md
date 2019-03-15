@@ -18,6 +18,7 @@ English README is available below.
 تحريك الأحرف العربية منفردة مستحيل حاليًا دون استخدام بعض الحيل.
 
 [هنا](http://tobiasahlin.com/moving-letters/) تحريك رائع يعتمد على تحريك كل حرف لوحده والذي لا يمكن تنفيذ مثله على الأحرف العربية دون حيل.
+
 مبدع التحريك:
 [@tobiasahlin](https://github.com/tobiasahlin)
 
@@ -30,7 +31,9 @@ English README is available below.
 أفضل حل حاليًا هو استخدام سمة 
 (attribute) `aria-hidden`
 على العناصر التي تستخدم المكتبة واستخدام كلاس 
+
 [Bulma](//bulma.io) من `is-sr-only`
+
 أو ما شابهة لعنصر آخر يحوي نفس النص حتى تقرأه قارئات الشاشة
 ## المساهمة
 
