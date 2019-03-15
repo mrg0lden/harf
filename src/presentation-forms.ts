@@ -115,5 +115,8 @@ export const arabicForms = {
   },
   "ي": {
     "final": "FEF2"
+  },
+  "الله": {
+    "final": "FDF2"
   }
 }

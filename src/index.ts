@@ -16,6 +16,11 @@ function convertToForm(letters: string[], index: number): string {
   let form = ""
   switch (letter) {
     case "ا":
+      if (letters[index + 1] === "ل" && letters[index + 2] === "ل"
+        && letters[index + 1] === "ه" && letters[index + 2] === " ") {
+        form = unicodeToChar(arabicForms["الله"].final)
+        break;
+      }
     case "أ":
     case "إ":
     case "آ":
@@ -33,7 +38,18 @@ function convertToForm(letters: string[], index: number): string {
       form = letter;
       break;
     case "ل":
-
+      if (
+        (letters[index - 1] === "ا"
+          && letters[index + 1] === "ل"
+          && letters[index + 2] === "ه"
+          && letters[index + 3] === " ")
+        || (letters[index - 2] === "ا"
+          && letters[index - 1] === "ل"
+          && letters[index + 1] === "ه"
+          && letters[index + 2] === " ")
+      ) {
+        break;
+      }
 
       //if letter after ل is أ,آ,إ,ا Then use لا form considering the previous letter, otherwise no need.
       //لا forms: isolated form = final form - 1
@@ -74,6 +90,10 @@ function convertToForm(letters: string[], index: number): string {
     case "م":
     case "ن":
     case "ه":
+      if (letters[index + 1] === " " && letters[index - 1] === "ل"
+        && letters[index - 2] === "ل" && letters[index - 3] === "ا") {
+        break;
+      }
     case "ي":
       //Initial form = final from + 1
       //Medial form = final form + 2
