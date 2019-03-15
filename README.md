@@ -6,8 +6,10 @@ English README is available below.
 مكتبة بسيطة تمكّن تحريك الأحرف العربية منفردة
 
 ### Example:
-في الأعلى شكل الأحرف العربية عندما يوضع أحدها داخل العنصر  `<span>` في المتصفحات الحالية.
+في المتصفحات الحالية. ـ  `<span>`  في الأعلى شكل الأحرف العربية عندما يوضع أحدها داخل العنصر
 أدناه الشكل المفترض (والذي ستحصل عليه عند استخدام هذه المكتبة). ـ
+
+
 [![example-of-the-problem](https://raw.githubusercontent.com/mrg0lden/harf/master/example.jpg)](https://w3c.github.io/i18n-tests/run?base=.&batch=cursive&test=css-text/shaping/shaping-001.html)
 
 ## لم؟
@@ -40,6 +42,8 @@ A utility to improve letter animations for Arabic alphabet.
 ### Example:
 Above is how arabic letters look in current browsers when one of them is in a `<span>`.
 Below is how it should look (and how it can look using this tiny library).
+
+
 [![example-of-the-problem](https://raw.githubusercontent.com/mrg0lden/harf/master/example.jpg)](https://w3c.github.io/i18n-tests/run?base=.&batch=cursive&test=css-text/shaping/shaping-001.html)
 
 ## Why?
