@@ -1,5 +1,5 @@
 # حرف (Harf.js)
-
+# It's still in pre-alpha, many things are broken.
 English README is available below.
 
 ## ما هي؟
